@@ -11,7 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as BookRouteImport } from './routes/book'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as MachinesRouteImport } from './routes/machines'
+import { Route as OrderRouteImport } from './routes/order'
+import { Route as TeamRouteImport } from './routes/team'
 import { Route as TechnologyRouteImport } from './routes/technology'
 import { Route as MachinesSlugRouteImport } from './routes/machines.$slug'
 
@@ -25,9 +30,34 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BookRoute = BookRouteImport.update({
+  id: '/book',
+  path: '/book',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MachinesRoute = MachinesRouteImport.update({
   id: '/machines',
   path: '/machines',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrderRoute = OrderRouteImport.update({
+  id: '/order',
+  path: '/order',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeamRoute = TeamRouteImport.update({
+  id: '/team',
+  path: '/team',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TechnologyRoute = TechnologyRouteImport.update({
@@ -44,14 +74,24 @@ const MachinesSlugRoute = MachinesSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/book': typeof BookRoute
+  '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
   '/machines': typeof MachinesRouteWithChildren
+  '/order': typeof OrderRoute
+  '/team': typeof TeamRoute
   '/technology': typeof TechnologyRoute
   '/machines/$slug': typeof MachinesSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/book': typeof BookRoute
+  '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
   '/machines': typeof MachinesRouteWithChildren
+  '/order': typeof OrderRoute
+  '/team': typeof TeamRoute
   '/technology': typeof TechnologyRoute
   '/machines/$slug': typeof MachinesSlugRoute
 }
@@ -59,20 +99,50 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/book': typeof BookRoute
+  '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
   '/machines': typeof MachinesRouteWithChildren
+  '/order': typeof OrderRoute
+  '/team': typeof TeamRoute
   '/technology': typeof TechnologyRoute
   '/machines/$slug': typeof MachinesSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/machines' | '/technology' | '/machines/$slug'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/book'
+    | '/contact'
+    | '/faq'
+    | '/machines'
+    | '/order'
+    | '/team'
+    | '/technology'
+    | '/machines/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/machines' | '/technology' | '/machines/$slug'
+  to:
+    | '/'
+    | '/about'
+    | '/book'
+    | '/contact'
+    | '/faq'
+    | '/machines'
+    | '/order'
+    | '/team'
+    | '/technology'
+    | '/machines/$slug'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/book'
+    | '/contact'
+    | '/faq'
     | '/machines'
+    | '/order'
+    | '/team'
     | '/technology'
     | '/machines/$slug'
   fileRoutesById: FileRoutesById
@@ -80,7 +150,12 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  BookRoute: typeof BookRoute
+  ContactRoute: typeof ContactRoute
+  FaqRoute: typeof FaqRoute
   MachinesRoute: typeof MachinesRouteWithChildren
+  OrderRoute: typeof OrderRoute
+  TeamRoute: typeof TeamRoute
   TechnologyRoute: typeof TechnologyRoute
 }
 
@@ -100,11 +175,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/book': {
+      id: '/book'
+      path: '/book'
+      fullPath: '/book'
+      preLoaderRoute: typeof BookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/machines': {
       id: '/machines'
       path: '/machines'
       fullPath: '/machines'
       preLoaderRoute: typeof MachinesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/order': {
+      id: '/order'
+      path: '/order'
+      fullPath: '/order'
+      preLoaderRoute: typeof OrderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/team': {
+      id: '/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof TeamRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/technology': {
@@ -139,7 +249,12 @@ const MachinesRouteWithChildren = MachinesRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  BookRoute: BookRoute,
+  ContactRoute: ContactRoute,
+  FaqRoute: FaqRoute,
   MachinesRoute: MachinesRouteWithChildren,
+  OrderRoute: OrderRoute,
+  TeamRoute: TeamRoute,
   TechnologyRoute: TechnologyRoute,
 }
 export const routeTree = rootRouteImport
