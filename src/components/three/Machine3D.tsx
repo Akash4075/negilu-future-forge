@@ -66,15 +66,15 @@ class ErrorBoundary extends Component<
   { children: ReactNode; onError: () => void },
   { hasError: boolean }
 > {
-  state = { hasError: false };
+  override state = { hasError: false };
   static getDerivedStateFromError() {
     return { hasError: true };
   }
-  componentDidCatch(error: Error, info: ErrorInfo) {
+  override componentDidCatch(error: Error, info: ErrorInfo) {
     console.error("3D model failed", error, info);
     this.props.onError();
   }
-  render() {
+  override render() {
     return this.state.hasError ? null : this.props.children;
   }
 }
