@@ -67,7 +67,7 @@ export const machines: MachineConfig[] = [
       { label: "Power", value: "Mains / solar" },
     ],
     bookingEnabled: true,
-    ctaKey: "cta.bookNow" in {} ? "cta.bookNow" : "cta.bookAMachine",
+    ctaKey: "cta.bookAMachine",
   },
 ];
 
