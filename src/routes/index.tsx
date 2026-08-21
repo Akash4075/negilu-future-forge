@@ -1,24 +1,62 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { Hero } from "@/components/home/Hero";
+import {
+  EngineeringDiagram,
+  FarmerFirst,
+  MachineShowcase,
+  MachineViewer,
+  QuickBooking,
+  ScrollStory,
+  TalkStrip,
+  WhyNegilu,
+} from "@/components/home/sections";
+
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Negilu Machinery — Engineering the Future of Agriculture" },
+      {
+        name: "description",
+        content:
+          "Negilu Machinery designs agricultural machines, farm automation and agricultural robotics in India. Book a machine, explore our technology and talk to our engineering team.",
+      },
+      { property: "og:title", content: "Negilu Machinery — Engineering the Future of Agriculture" },
+      {
+        property: "og:description",
+        content:
+          "Smart machines. Practical engineering. Better farming. Agricultural machinery and robotics from India.",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Negilu Machinery",
+          description:
+            "Indian agricultural machinery and technology company developing modern machines, automation and intelligent agricultural solutions.",
+          areaServed: "IN",
+        }),
+      },
+    ],
+  }),
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Home() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <Hero />
+      <QuickBooking />
+      <MachineShowcase />
+      <MachineViewer />
+      <ScrollStory />
+      <WhyNegilu />
+      <EngineeringDiagram />
+      <FarmerFirst />
+      <TalkStrip />
+    </>
   );
 }
